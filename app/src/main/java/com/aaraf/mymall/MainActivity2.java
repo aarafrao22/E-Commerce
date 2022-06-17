@@ -10,6 +10,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
@@ -19,24 +20,26 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.aaraf.mymall.databinding.ActivityMain2Binding;
-
 public class MainActivity2 extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private ActivityMain2Binding binding;
-
+    Toolbar toolbar;
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
     private FrameLayout frameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main2);
 
-        binding = ActivityMain2Binding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        frameLayout = findViewById(R.id.mainFrameLayout);
+        toolbar = findViewById(R.id.app_bar_main);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
 
-        setSupportActionBar(binding.appBarMain.toolbar);
-        binding.appBarMain.toolbar.setOnClickListener(new View.OnClickListener() {
+        setSupportActionBar(toolbar);
+        toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -45,13 +48,12 @@ public class MainActivity2 extends AppCompatActivity {
         });
 
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        DrawerLayout drawer = binding.drawerLayout;
-        NavigationView navigationView = binding.navView;
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_myMall, R.id.nav_orders, R.id.nav_rewards, R.id.nav_cart, R.id.nav_favourites, R.id.nav_person, R.id.nav_signOut)
-                .setOpenableLayout(drawer)
+                .setOpenableLayout(drawerLayout)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
@@ -59,7 +61,6 @@ public class MainActivity2 extends AppCompatActivity {
 
         navigationView.getMenu().getItem(0).setChecked(true);
 
-        frameLayout = findViewById(R.id.mainFrameLayout);
         setFragment(new HomeFragment());
 
     }
@@ -76,7 +77,7 @@ public class MainActivity2 extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.search_main) {
-            //TODO:SEARCH
+
             return true;
 
         } else if (id == R.id.main_notification) {

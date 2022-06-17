@@ -22,7 +22,6 @@ import com.aaraf.mymall.HomePageModel;
 import com.aaraf.mymall.HorizontalScrollProductAdapter;
 import com.aaraf.mymall.HorizontalScrollProductModel;
 import com.aaraf.mymall.R;
-import com.aaraf.mymall.databinding.FragmentHomeBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +29,6 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
     private HomePageModel homeViewModel;
-    private FragmentHomeBinding binding;
     private RecyclerView testing;
 
 

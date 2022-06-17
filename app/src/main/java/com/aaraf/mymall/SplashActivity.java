@@ -24,7 +24,7 @@ public class SplashActivity extends AppCompatActivity {
         imageView.setImageResource(R.drawable.ic_baseline_shopping_bag_24);
         firebaseAuth = FirebaseAuth.getInstance();
 
-        SystemClock.sleep(0);
+        SystemClock.sleep(1000);
         Intent loginIntent = new Intent(SplashActivity.this, RegisterActivity.class);
         startActivity(loginIntent);
         finish();
